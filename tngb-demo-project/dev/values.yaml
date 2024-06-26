@@ -1,18 +1,18 @@
 env: dev
 application:
-  name: aadharbackendadapter
+  name: tngb-demo-app
   javaoptions: -Xms256m -Xmx512m
 replicaCount: 1
 image:
-  repository: image-registry.openshift-image-registry.svc:5000/fuse-uat-pipelines/aadharbackendadapter
+  repository: quay.io/praveenrachamreddy/tngb-demo-app/kartheek-kumar-reddy/tngb-demo-project
   pullPolicy: Always
-  tag: "v13"
+  tag: "v1"
 service:
   type: ClusterIP
-  port: 9903
+  port: 9090
 route:
   enabled: true
-  host: aadharbackendadapter.apps.tclnprdservices.tatacapital.com
+  host: tngb-demo-app.apps.ocp4.imss.work
   path: /
 autoscaling:
   enabled: false
@@ -21,24 +21,24 @@ autoscaling:
   targetCPUUtilizationPercentage: 90
   targetMemoryUtilizationPercentage: 80
 labels:
-  component: aadharbackendadapter
-  deploymentconfig: aadharbackendadapter
+  component: tngb-demo-app
+  deploymentconfig: tngb-demo-app
   group: tatacapital
-  project: aadharbackendadapter
+  project: tngb-demo-app
   provider: s2i
   version: 1.0.0
 resources:
   limits:
-    cpu: 1000m
-    memory: 1024Mi
+    cpu: 500m
+    memory: 500Mi
   requests:
     cpu: 10m
     memory: 256Mi
 readinessProbe:
   httpGet:
     scheme: HTTP
-    path: /rest/aadharbackend/v1.0/healthCheckReadiness
-    port: 9903
+    path: /rest/health
+    port: 9090
   periodSeconds: 30
   initialDelaySeconds: 30
   successThreshold: 1
@@ -46,8 +46,8 @@ readinessProbe:
 livenessProbe:
   httpGet:
     scheme: HTTP
-    path: /rest/aadharbackend/v1.0/healthCheckLiveness
-    port: 9903
+    path: /rest/health
+    port: 9090
   timeoutSeconds: 1
   periodSeconds: 30
   initialDelaySeconds: 30
