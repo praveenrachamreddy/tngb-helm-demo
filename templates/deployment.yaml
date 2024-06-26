@@ -54,29 +54,7 @@ spec:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
-          env:
-            - name: http_proxy
-              value: 'http://157.227.4.5:8080'
-            - name: https_proxy
-              value: 'http://157.227.4.5:8080'
-            - name: no_proxy
-              value: '.apps.tclnprdservices.tatacapital.com,.cluster.local,.svc,.svc.cluster.local,.tatacapital.com,.tclnprdservices.tatacapital.com,
-              10.0.0.0/16,10.128.0.0/14,127.0.0.1,172.16.19.0/23,172.35.0.0/16,192.168.16.41,api-int.tclnprdservices.tatacapital.com,api.tclnprdservices.tatacapital.com,localhost,convergeuat.tatacapital.com,172.16.16.47,172.16.19.165,dmsnewuat.tatacapital.com,172.16.2.239,172.16.17.130,172.17.45.17,172.16.5.225,172.16.18.222'
-            - name: KUBERNETES_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  apiVersion: v1
-                  fieldPath: metadata.namespace
-            - name: TZ
-              value: Asia/kolkata
-            - name: spring.config.location
-              value: /workspace/output/{{ .Values.application.name }}/application-{{ .Values.env }}.properties
-            - name: JAVA_OPTIONS
-              value: {{.Values.application.javaoptions}}
-            - name: JAVA_OPTIONS
-              value: '-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap -XX:+UseParallelGC -XX:MinHeapFreeRatio=5 -XX:MaxHeapFreeRatio=10 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dlog4j2.formatMsgNoLookups=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/opt/JocataFE_HeapDump.href'
-            - name: PROPERTY_FILE_NAME
-              value: {{.Values.application.propertyFileName | default "nothing"}}
+          
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.affinity }}
