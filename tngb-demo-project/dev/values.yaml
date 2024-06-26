@@ -4,9 +4,9 @@ application:
   javaoptions: -Xms256m -Xmx512m
 replicaCount: 1
 image:
-  repository: quay.io/praveenrachamreddy/tngb-demo-app/kartheek-kumar-reddy/tngb-demo-project
+  repository: quay.io/praveenrachamreddy/kartheek-kumar-reddy/tngb-demo-app
   pullPolicy: Always
-  tag: "v1"
+  tag: "v2"
 service:
   type: ClusterIP
   port: 9090
