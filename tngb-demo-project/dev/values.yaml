@@ -1,7 +1,5 @@
 env: dev
-application:
-  name: tngb-demo-app
-  javaoptions: -Xms256m -Xmx512m
+
 replicaCount: 1
 image:
   repository: quay.io/praveenrachamreddy/kartheek-kumar-reddy/tngb-demo-app
