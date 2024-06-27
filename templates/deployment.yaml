@@ -28,10 +28,10 @@ spec:
       serviceAccountName: default
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      volumes:
-        - name: config-volume
-          configMap:
-            name: {{ .Values.application.name }}-{{ .Values.env }}.properties
+      #volumes:
+        #- name: config-volume
+         # configMap:
+          #  name: {{ .Values.application.name }}-{{ .Values.env }}.properties
       nodeSelector:
         node-role.kubernetes.io/worker: ''
       containers:
@@ -47,9 +47,9 @@ spec:
             - name: jolokia
               containerPort: 8778
               protocol: TCP
-          volumeMounts:
-            - mountPath: /workspace/output/{{ .Values.application.name }}
-              name: config-volume
+          #volumeMounts:
+           # - mountPath: /workspace/output/{{ .Values.application.name }}
+            #  name: config-volume
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
